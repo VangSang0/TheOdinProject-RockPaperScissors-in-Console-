@@ -49,7 +49,6 @@ function playRounds(){
     let whoWon = whoWins(computerInput, userInput);
     console.log(computerInput);
     console.log(userInput);
-    console.log(whoWon);
     if (whoWon === 1){
         computerWins ++;
     }else if (whoWon === 2){
@@ -67,6 +66,7 @@ function playRounds(){
 function playGames(){
     for (let i = 0 ; i < 5; i ++){
         playRounds()
+        console.log('')
     }
 }
 
