@@ -2,8 +2,8 @@
 'users strict';
 
 function getComputerChoice(){
-    var choice = Math.floor(Math.random() * 3) + 1;
-    var computerChoice = '';
+    const choice = Math.floor(Math.random() * 3) + 1;
+    let computerChoice = '';
     if (choice == 1){
         computerChoice = 'Rock';
     }
@@ -40,23 +40,59 @@ let ties = 0
 
 function playRounds(userInput){
     const computerInput = getComputerChoice();
-    let whoWon = whoWins(computerInput, userInput);
-    console.log(computerInput);
-    console.log(userInput);
+    const whoWon = whoWins(computerInput, userInput);
+
+    const displayWhoWon = document.createElement('h3');
+    displayWhoWon.classList.add('wins');
+
     if (whoWon === 1){
+        displayWhoWon.textContent = 'Computer won!';
         computerWins ++;
     }else if (whoWon === 2){
+        displayWhoWon.textContent = 'You won!';
         userWins ++;
     }
     else {
+        displayWhoWon.textContent = 'It was a tie.';
         ties ++ ;
     }
-    console.log("computer wins: " + computerWins);
-    console.log("User wins: " + userWins);
-    console.log("Ties: " + ties);
+
+
+    const resultBox = document.querySelector('.results');
+    resultBox.textContent = 'Here are the Results: ';
     
+    const computerChoiceDisplay = document.createElement('p');
+    computerChoiceDisplay.classList.add('played-move');
+    computerChoiceDisplay.textContent = "Computer's move: " + computerInput;
+
+    const usersChoiceDisplay = document.createElement('p');
+    usersChoiceDisplay.classList.add('played-move');
+    usersChoiceDisplay.textContent = "User's Move: " + userInput;
+
+    const computerWinsDisplay = document.createElement('p');
+    computerWinsDisplay.classList.add('wins');
+    computerWinsDisplay.textContent = "Computer Wins: " + computerWins;
+
+    const usersWinsDisplay = document.createElement('p');
+    usersWinsDisplay.classList.add('wins');
+    usersWinsDisplay.textContent = "User Wins: " + userWins;
+
+    const tiesDisplay = document.createElement('p');
+    tiesDisplay.classList.add('wins');
+    tiesDisplay.textContent = "Ties: " + ties;
+
+    resultBox.appendChild(displayWhoWon);
+    resultBox.appendChild(computerChoiceDisplay);
+    resultBox.appendChild(usersChoiceDisplay);
+    resultBox.appendChild(computerWinsDisplay);
+    resultBox.appendChild(usersWinsDisplay);
+    resultBox.appendChild(tiesDisplay);
+
 }
 
+// resultBox
+// Give out who won
+// Show the results
 // function playGames(){
 //     for (let i = 0 ; i < 5; i ++){
 //         playRounds()

@@ -35,3 +35,15 @@ header{
 button:hover{
     cursor: pointer;
 }
+
+.results{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+
+.played-move, .wins{
+    margin-top: 1rem;
+}
