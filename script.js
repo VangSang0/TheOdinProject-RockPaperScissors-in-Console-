@@ -19,14 +19,9 @@ function getComputerChoice(){
     return computerChoice;
 }
 
-function getUserChoice(){
-    let userChoice = prompt('What move are you playing? (Rock, Paper, Scissors)', 'Rock').toLowerCase().trim();
-    return userChoice.charAt(0).toUpperCase() + userChoice.slice(1);
-}
-
 
 function whoWins(firstChoice, secondChoice){
-    var winner = 0;
+    let winner = 0;
     if (firstChoice.toLowerCase() == 'paper' && secondChoice.toLowerCase() == 'rock' || firstChoice.toLowerCase() == 'rock' && secondChoice.toLowerCase() == 'scissors' || firstChoice.toLowerCase() == 'scissors' && secondChoice.toLowerCase() == 'paper'){
         winner = 1;
     }
@@ -43,9 +38,8 @@ let computerWins = 0;
 let userWins = 0;
 let ties = 0
 
-function playRounds(){
+function playRounds(userInput){
     const computerInput = getComputerChoice();
-    const userInput = getUserChoice();
     let whoWon = whoWins(computerInput, userInput);
     console.log(computerInput);
     console.log(userInput);
@@ -63,11 +57,24 @@ function playRounds(){
     
 }
 
-function playGames(){
-    for (let i = 0 ; i < 5; i ++){
-        playRounds()
-        console.log('')
-    }
+// function playGames(){
+//     for (let i = 0 ; i < 5; i ++){
+//         playRounds()
+//         console.log('')
+//     }
+// }
+
+// playGames();
+
+function startGame() {
+    const btn = document.querySelectorAll('button');
+    btn.forEach((button) =>
+        button.addEventListener('click', function() {
+            const userChoice = button.textContent;
+            playRounds(userChoice);
+        })
+    );
 }
 
-playGames();
+
+startGame();
